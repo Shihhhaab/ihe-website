@@ -1,0 +1,206 @@
+{
+  "about-img": {
+    "widths": [
+      624
+    ],
+    "ratio": 0.8715
+  },
+  "cases-slider-img-2": {
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "ratio": 1.498
+  },
+  "cases-slider-img-3": {
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "ratio": 1.4984
+  },
+  "doha-skyline": {
+    "widths": [
+      640,
+      1024
+    ],
+    "ratio": 1
+  },
+  "ihe-asphalt-paving": {
+    "widths": [
+      640,
+      1200
+    ],
+    "ratio": 1.7778
+  },
+  "ihe-commercial-building": {
+    "widths": [
+      322
+    ],
+    "ratio": 1.3529
+  },
+  "ihe-earthworks": {
+    "widths": [
+      640,
+      1280,
+      1600
+    ],
+    "ratio": 1.4815
+  },
+  "ihe-landscaped-roads": {
+    "widths": [
+      640,
+      1280,
+      1600
+    ],
+    "ratio": 1.3333
+  },
+  "ihe-landscaping-works": {
+    "widths": [
+      640,
+      1024
+    ],
+    "ratio": 1.3333
+  },
+  "ihe-material-supply": {
+    "widths": [
+      640,
+      800
+    ],
+    "ratio": 1.3378
+  },
+  "ihe-paving-operation": {
+    "widths": [
+      640,
+      704
+    ],
+    "ratio": 1.9556
+  },
+  "ihe-plant-equipment": {
+    "widths": [
+      640,
+      1280
+    ],
+    "ratio": 3.145
+  },
+  "ihe-project-aerial": {
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "ratio": 1.7778
+  },
+  "ihe-road-intersection": {
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "ratio": 1.7778
+  },
+  "ihe-roads-infrastructure": {
+    "widths": [
+      640,
+      1200
+    ],
+    "ratio": 1.7778
+  },
+  "ihe-safety-briefing": {
+    "widths": [
+      640,
+      1280,
+      1606
+    ],
+    "ratio": 1.2973
+  },
+  "ihe-utility-networks": {
+    "widths": [
+      640,
+      1280,
+      1800
+    ],
+    "ratio": 1.7787
+  },
+  "iso-14001-certificate": {
+    "widths": [
+      304
+    ],
+    "ratio": 0.7021
+  },
+  "iso-45001-certificate": {
+    "widths": [
+      304
+    ],
+    "ratio": 0.7021
+  },
+  "iso-9001-certificate": {
+    "widths": [
+      304
+    ],
+    "ratio": 0.7021
+  },
+  "project-al-bayt-parking": {
+    "widths": [
+      640,
+      1280,
+      1800
+    ],
+    "ratio": 1.5013
+  },
+  "project-attenuation-tank": {
+    "widths": [
+      640,
+      1280
+    ],
+    "ratio": 1.7778
+  },
+  "project-lusail-circuit-parking": {
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "ratio": 1.7778
+  },
+  "project-riw-doha-city": {
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "ratio": 1.4997
+  },
+  "project-riw-northern-areas": {
+    "widths": [
+      640,
+      1280,
+      1600
+    ],
+    "ratio": 1.3333
+  },
+  "promo-2": {
+    "widths": [
+      640,
+      1280,
+      1920
+    ],
+    "ratio": 2.2562
+  },
+  "qatar-heavy-fleet": {
+    "widths": [
+      640,
+      1024
+    ],
+    "ratio": 1
+  },
+  "qatar-highway": {
+    "widths": [
+      640,
+      1024
+    ],
+    "ratio": 1
+  }
+}

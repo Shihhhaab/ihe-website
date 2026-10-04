@@ -1,0 +1,41 @@
+.mask-line {
+  display: block;
+  overflow: hidden;
+  /* room for descenders without clipping */
+  padding-bottom: 0.08em;
+  margin-bottom: -0.08em;
+}
+
+.mask-line__inner {
+  display: inline-block;
+  will-change: transform;
+}
+
+.mask-image {
+  position: relative;
+  overflow: hidden;
+  background: var(--black-800);
+}
+
+.mask-image__inner {
+  position: absolute;
+  inset: -8% 0;
+  will-change: transform;
+}
+
+.mask-image__inner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.mask-image--static .mask-image__inner {
+  inset: 0;
+}
+
+.draw-line {
+  display: block;
+  height: 1px;
+  background: currentColor;
+  transform-origin: left center;
+}

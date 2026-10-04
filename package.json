@@ -1,0 +1,44 @@
+{
+  "name": "ihe-website",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "build": "tsc -b && vite build",
+    "lint": "oxlint",
+    "preview": "vite preview",
+    "images": "node scripts/optimize-images.mjs",
+    "dev:web": "vite",
+    "dev:api": "node --env-file-if-exists=.env backend/src/server.ts",
+    "start": "node --env-file-if-exists=.env backend/src/server.ts",
+    "typecheck": "tsc -b",
+    "test": "node --test \"backend/tests/**/*.test.ts\"",
+    "check:cloudinary": "node --env-file=.env scripts/check-cloudinary.ts"
+  },
+  "dependencies": {
+    "cloudinary": "^2.11.0",
+    "express": "^5.2.1",
+    "lucide-react": "^1.48.0",
+    "mongodb": "^7.6.0",
+    "motion": "^13.4.4",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "react-router-dom": "^7.18.4"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "@types/node": "^24.13.3",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.7",
+    "@vitejs/plugin-react": "^6.1.1",
+    "mongodb-memory-server": "^11.3.0",
+    "oxlint": "^1.81.0",
+    "sharp": "^0.35.4",
+    "typescript": "~6.0.2",
+    "vite": "^8.3.0"
+  },
+  "engines": {
+    "node": ">=22.18"
+  }
+}

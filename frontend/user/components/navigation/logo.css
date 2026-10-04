@@ -1,0 +1,53 @@
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.85rem;
+  color: var(--white);
+}
+
+.logo--dark {
+  color: var(--black-900);
+}
+
+.logo__mark {
+  width: auto;
+  height: 40px;
+  transition: transform var(--dur) var(--ease-out);
+}
+
+.logo:hover .logo__mark {
+  transform: translateY(-2px);
+}
+
+.logo__text {
+  display: grid;
+  gap: 0.15rem;
+  padding-left: 0.85rem;
+  border-left: 1px solid currentColor;
+  border-color: color-mix(in srgb, currentColor 25%, transparent);
+  line-height: 1.1;
+}
+
+.logo__name {
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  font-weight: 700;
+  font-stretch: 110%;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  max-width: 13ch;
+}
+
+.logo__tag {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--brand-bright);
+}
+
+@media (max-width: 420px) {
+  .logo__text {
+    display: none;
+  }
+}

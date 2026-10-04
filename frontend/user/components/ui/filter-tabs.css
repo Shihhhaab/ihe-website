@@ -1,0 +1,51 @@
+/* ─── Filter ─────────────────────────────────────────────── */
+.filter {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  padding: 0.3rem;
+  border: 1px solid var(--line-light-strong);
+  background: var(--white);
+}
+
+.filter__btn {
+  position: relative;
+  padding: 0.65rem 1.1rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--slate);
+  transition: color var(--dur) var(--ease-out);
+}
+
+.filter__btn:hover {
+  color: var(--black-900);
+}
+
+.filter__btn.is-active {
+  color: var(--white);
+}
+
+.filter__pill {
+  position: absolute;
+  inset: 0;
+  background: var(--black-900);
+}
+
+.filter__label {
+  position: relative;
+  display: inline-flex;
+  gap: 0.5rem;
+  align-items: baseline;
+}
+
+.filter__label .mono {
+  font-size: 0.64rem;
+  font-weight: 400;
+  color: var(--brand-700);
+}
+
+.filter__btn.is-active .filter__label .mono {
+  color: var(--brand-bright);
+}

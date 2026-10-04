@@ -1,0 +1,18 @@
+.page-curtain {
+  position: fixed;
+  inset: 0;
+  z-index: 150;
+  background:
+    linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px) 0 0 / 96px 100%,
+    var(--black-900);
+  pointer-events: none;
+  display: grid;
+  place-items: center;
+  will-change: clip-path;
+}
+
+.page-curtain__mark {
+  width: 72px;
+  height: 54px;
+  background: url('/img/ihe-logo.png') center / contain no-repeat;
+}

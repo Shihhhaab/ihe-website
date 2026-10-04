@@ -1,0 +1,498 @@
+/* ─── Management statement ───────────────────────────────── */
+.statement__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  gap: clamp(2.5rem, 6vw, 6.5rem);
+  align-items: center;
+}
+
+.statement__img {
+  aspect-ratio: 624 / 716;
+}
+
+.statement__caption {
+  display: block;
+  margin-top: 0.9rem;
+  font-size: 0.66rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--slate);
+}
+
+.statement__text {
+  display: grid;
+  gap: 1.2rem;
+  margin-top: 2rem;
+  max-width: 620px;
+}
+
+.statement__text strong {
+  font-weight: 600;
+  color: var(--brand);
+}
+
+.statement__quote {
+  position: relative;
+  margin: 0.8rem 0 0;
+  padding: 1.25rem 0 1.25rem 1.75rem;
+  border-left: 2px solid var(--brand-bright);
+  font-family: var(--font-display);
+  font-size: var(--fs-h4);
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+  color: var(--black-900);
+}
+
+.statement__sign {
+  margin-top: 2rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--line-light);
+  max-width: 620px;
+}
+
+.statement__name {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 600;
+  font-style: italic;
+}
+
+.statement__role {
+  font-size: var(--fs-label);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--slate);
+}
+
+@media (max-width: 900px) {
+  .statement__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .statement__visual {
+    max-width: 480px;
+  }
+}
+
+/* ─── Mission & vision ───────────────────────────────────── */
+.purpose__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 1px minmax(0, 1fr);
+  gap: clamp(2rem, 5vw, 5rem);
+}
+
+.purpose__divider {
+  background: var(--line-dark-strong);
+}
+
+.purpose__item {
+  display: grid;
+  gap: 1.5rem;
+  align-content: start;
+}
+
+.purpose__label {
+  font-size: var(--fs-label);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--brand-bright);
+}
+
+.purpose__text {
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 1rem + 1.4vw, 2.3rem);
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  color: var(--white);
+}
+
+.purpose__stats {
+  margin-top: clamp(4rem, 8vw, 6.5rem);
+}
+
+@media (max-width: 800px) {
+  .purpose__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .purpose__divider {
+    height: 1px;
+  }
+}
+
+/* ─── Values ─────────────────────────────────────────────── */
+.values__list {
+  border-top: 1px solid var(--line-light-strong);
+}
+
+.values__item {
+  display: grid;
+  grid-template-columns: minmax(80px, 0.3fr) minmax(0, 1fr);
+  gap: 2rem;
+  align-items: baseline;
+  padding-block: clamp(1.75rem, 3vw, 2.5rem);
+  border-bottom: 1px solid var(--line-light);
+  transition: padding-left 0.6s var(--ease-out);
+}
+
+.values__item > div {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 1.25rem 3rem;
+  align-items: baseline;
+}
+
+.values__num {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 2rem + 2vw, 4rem);
+  font-weight: 300;
+  font-stretch: 125%;
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 1px var(--brand-700);
+  transition:
+    color var(--dur) var(--ease-out),
+    -webkit-text-stroke-color var(--dur);
+}
+
+@media (hover: hover) {
+  .values__item:hover {
+    padding-left: 1rem;
+  }
+
+  .values__item:hover .values__num {
+    color: var(--brand);
+    -webkit-text-stroke-color: var(--brand);
+  }
+}
+
+@media (max-width: 768px) {
+  .values__item,
+  .values__item > div {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+}
+
+/* ─── Milestones ─────────────────────────────────────────── */
+.milestones__track {
+  position: relative;
+  color: var(--line-light-strong);
+}
+
+.milestones__line {
+  position: absolute;
+  top: 7px;
+  left: 0;
+  right: 0;
+}
+
+.milestones__list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1.5rem, 4vw, 4rem);
+}
+
+.milestones__item {
+  position: relative;
+  display: grid;
+  gap: 0.75rem;
+  align-content: start;
+  padding-top: 2.5rem;
+}
+
+.milestones__node {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 15px;
+  height: 15px;
+  background: var(--white);
+  border: 1px solid var(--brand);
+  transform: rotate(45deg);
+}
+
+.milestones__node::after {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  background: var(--brand);
+}
+
+.milestones__year {
+  font-family: var(--font-display);
+  font-size: clamp(2.6rem, 2rem + 2.5vw, 4.4rem);
+  font-weight: 600;
+  font-stretch: 112%;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--black-900);
+}
+
+@media (max-width: 800px) {
+  .milestones__line {
+    top: 0;
+    bottom: 0;
+    left: 7px;
+    right: auto;
+    width: 1px;
+    height: auto;
+    transform-origin: top;
+  }
+
+  .milestones__list {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .milestones__item {
+    padding: 0 0 0 2.5rem;
+  }
+}
+
+/* ─── Organization chart ─────────────────────────────────── */
+.org__chart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.org__node {
+  display: grid;
+  gap: 0.3rem;
+  justify-items: center;
+  text-align: center;
+  padding: 1.25rem 2.5rem;
+  border: 1px solid var(--line-dark-strong);
+  color: var(--white);
+}
+
+.org__node strong {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.org__node .mono {
+  font-size: var(--fs-label);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--brand-bright);
+}
+
+.org__node--head {
+  background: var(--brand);
+  border-color: var(--brand);
+}
+
+.org__node--head .mono {
+  color: var(--brand-300);
+}
+
+.org__node--mgmt {
+  background: var(--black-800);
+}
+
+.org__stem {
+  width: 1px;
+  height: 40px;
+  background: var(--line-dark-strong);
+}
+
+.org__departments {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+  width: 100%;
+  padding-top: 40px;
+}
+
+/* horizontal bus connecting the departments */
+.org__departments::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 12.5%;
+  right: 12.5%;
+  height: 1px;
+  background: var(--line-dark-strong);
+}
+
+.org__dept {
+  position: relative;
+  display: grid;
+  gap: 0.6rem;
+  align-content: start;
+  padding: 1.5rem;
+  border: 1px solid var(--line-dark);
+  background: rgba(255, 255, 255, 0.02);
+  color: var(--white);
+  transition:
+    border-color var(--dur),
+    transform var(--dur) var(--ease-out),
+    background-color var(--dur);
+}
+
+.org__dept::before {
+  content: '';
+  position: absolute;
+  top: -41px;
+  left: 50%;
+  width: 1px;
+  height: 40px;
+  background: var(--line-dark-strong);
+}
+
+.org__dept-num {
+  font-size: var(--fs-label);
+  color: var(--brand-bright);
+}
+
+.org__dept p {
+  font-size: var(--fs-small);
+}
+
+@media (hover: hover) {
+  .org__dept:hover {
+    border-color: rgba(224, 72, 72, 0.5);
+    background: rgba(255, 255, 255, 0.04);
+    transform: translateY(-4px);
+  }
+}
+
+@media (max-width: 900px) {
+  .org__departments {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .org__departments::before,
+  .org__dept::before {
+    display: none;
+  }
+
+  .org__departments {
+    padding-top: 0;
+  }
+}
+
+@media (max-width: 520px) {
+  .org__departments {
+    grid-template-columns: 1fr;
+  }
+
+  .org__node {
+    width: 100%;
+    padding-inline: 1.25rem;
+  }
+}
+
+/* ─── Mission & vision points ────────────────────────────── */
+.purpose__points {
+  display: grid;
+  gap: 0.6rem;
+  padding: 0;
+  list-style: none;
+  color: var(--text-on-dark-muted);
+}
+
+.purpose__points li {
+  position: relative;
+  padding-left: 1rem;
+}
+
+.purpose__points li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.65em;
+  width: 5px;
+  height: 5px;
+  background: var(--brand-bright);
+}
+
+/* ─── Workforce breakdown ────────────────────────────────── */
+.org__workforce {
+  display: grid;
+  grid-template-columns: minmax(0, 0.7fr) minmax(0, 2fr);
+  gap: clamp(1.5rem, 4vw, 4rem);
+  margin-top: clamp(3rem, 6vw, 5rem);
+  padding-top: clamp(2rem, 4vw, 3rem);
+  border-top: 1px solid var(--line-dark);
+  color: var(--white);
+}
+
+.org__workforce-head {
+  display: grid;
+  gap: 0.5rem;
+  align-content: start;
+}
+
+.org__workforce-head .mono {
+  font-size: var(--fs-label);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--brand-bright);
+}
+
+.org__workforce-head strong {
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 1rem + 1vw, 2rem);
+  font-weight: 600;
+}
+
+.org__workforce-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin: 0;
+}
+
+.org__workforce-item {
+  position: relative;
+  display: grid;
+  gap: 0.5rem;
+  padding: 1.25rem 1.25rem 1.5rem;
+  border: 1px solid var(--line-dark);
+  overflow: hidden;
+}
+
+.org__workforce-item dt {
+  font-size: var(--fs-small);
+}
+
+.org__workforce-item dd {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  margin: 0;
+}
+
+.org__workforce-item dd strong {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.org__workforce-item dd .mono {
+  font-size: var(--fs-label);
+  color: var(--brand-bright);
+}
+
+.org__workforce-bar {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 3px;
+  background: var(--brand-bright);
+}
+
+@media (max-width: 900px) {
+  .org__workforce,
+  .org__workforce-list {
+    grid-template-columns: 1fr;
+  }
+}

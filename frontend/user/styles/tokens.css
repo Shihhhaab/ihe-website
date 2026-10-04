@@ -1,0 +1,72 @@
+/* I.H.E. design tokens */
+:root {
+  /* Palette — taken from the I.H.E. logo: brick red, road black and white. */
+  --black-950: #0b0b0c;
+  --black-900: #141416;
+  --black-800: #1c1c1f;
+  --black-700: #28282c;
+  --black-600: #3a3a3f;
+  --charcoal: #18181a;
+  /* Logo red: fills, buttons and accents on light surfaces */
+  --brand: #801818;
+  --brand-600: #9c1f1f;
+  /* Brighter tint of the logo red: accents and labels on dark surfaces */
+  --brand-bright: #e04848;
+  --brand-300: #f08a86;
+  --brand-700: #a82828;
+  --white: #ffffff;
+  --paper: #f4f4f5;
+  --stone: #e6e6e8;
+  --ink: #141416;
+  --slate: #515158;
+  --mist: #9d9da5;
+
+  /* Semantic surfaces */
+  --surface-dark: var(--black-900);
+  --surface-darker: var(--black-950);
+  --surface-light: var(--paper);
+  --line-dark: rgba(255, 255, 255, 0.12);
+  --line-dark-strong: rgba(255, 255, 255, 0.22);
+  --line-light: rgba(20, 20, 22, 0.12);
+  --line-light-strong: rgba(20, 20, 22, 0.24);
+  --text-on-dark: rgba(255, 255, 255, 0.92);
+  --text-on-dark-muted: rgba(232, 232, 236, 0.68);
+
+  /* Typography */
+  --font-display: 'Archivo', 'Arial Narrow', system-ui, sans-serif;
+  --font-body: 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+
+  --fs-hero: clamp(2.9rem, 1.4rem + 6.2vw, 7.4rem);
+  --fs-display: clamp(2.4rem, 1.4rem + 3.8vw, 5rem);
+  --fs-h2: clamp(2rem, 1.35rem + 2.5vw, 3.6rem);
+  --fs-h3: clamp(1.35rem, 1.1rem + 0.9vw, 1.9rem);
+  --fs-h4: clamp(1.1rem, 1rem + 0.4vw, 1.3rem);
+  --fs-lead: clamp(1.05rem, 0.98rem + 0.35vw, 1.3rem);
+  --fs-body: 1rem;
+  --fs-small: 0.875rem;
+  --fs-label: 0.72rem;
+
+  /* Layout */
+  --container: 1320px;
+  --gutter: clamp(1rem, 0.4rem + 3vw, 3rem);
+  --section-y: clamp(4.5rem, 3rem + 6vw, 8.5rem);
+  --header-h: 84px;
+  --radius: 2px;
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast: 0.25s;
+  --dur: 0.5s;
+  --dur-slow: 0.9s;
+
+  --shadow-lift: 0 24px 48px -24px rgba(11, 11, 12, 0.35);
+  --shadow-soft: 0 12px 32px -16px rgba(11, 11, 12, 0.25);
+}
+
+@media (max-width: 768px) {
+  :root {
+    --header-h: 68px;
+  }
+}
