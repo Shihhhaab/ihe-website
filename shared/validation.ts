@@ -17,6 +17,7 @@ import type {
   CertificateFileType,
   CompanySettings,
   EnquirySource,
+  HeroContent,
   EnquiryStatus,
   NotificationPrefs,
   ProjectStatus,
@@ -403,6 +404,38 @@ export function validateCompany(input: unknown): Result<CompanySettings> {
     companyAddress: c.text('companyAddress', 'Company address', { max: 300 }),
     logoUrl: c.image('logoUrl', 'Company logo'),
   })
+}
+
+/**
+ * The hero heading is set very large, so it is kept to a few short lines. Its
+ * font is sized so a 15-letter word ("INFRASTRUCTURAL") fits any screen.
+ */
+export const HERO_TITLE_MAX_LINES = 3
+export const HERO_TITLE_LINE_MAX = 20
+export const HERO_TITLE_WORD_MAX = 15
+
+export function validateHero(input: unknown): Result<HeroContent> {
+  const c = new Checker(input)
+  const image = c.image('image', 'Header image')
+  const imageAlt = c.text('imageAlt', 'Image description', { required: image !== null, max: 200 })
+  const subtitle = c.text('subtitle', 'Subtitle', { required: true, max: 90 })
+  const raw = c.raw('title')
+  const title = (Array.isArray(raw) ? raw : [])
+    .filter((line): line is string => typeof line === 'string')
+    .map((line) => line.trim())
+    .filter(Boolean)
+  if (!title.length) c.errors.title = 'Main heading is required.'
+  else if (title.length > HERO_TITLE_MAX_LINES) c.errors.title = `Use at most ${HERO_TITLE_MAX_LINES} lines.`
+  else if (title.some((line) => line.length > HERO_TITLE_LINE_MAX)) c.errors.title = `Keep each line to ${HERO_TITLE_LINE_MAX} characters or fewer.`
+  else if (title.some((line) => line.split(/\s+/).some((word) => word.length > HERO_TITLE_WORD_MAX)))
+    c.errors.title = `Words longer than ${HERO_TITLE_WORD_MAX} letters do not fit on small screens.`
+  const description = c.text('description', 'Description', { required: true, max: 300 })
+  const ctaLabel = c.text('ctaLabel', 'Button text', { required: true, max: 40 })
+  const ctaLink = c.text('ctaLink', 'Button link', { required: true, max: 300 })
+  // A path on this site ("/contact", not "//host") or an absolute https:// address.
+  if (ctaLink && !/^\/(?!\/)\S*$/.test(ctaLink) && !/^https:\/\/[^\s/]+\S*$/.test(ctaLink))
+    c.errors.ctaLink = 'Use a page on this site such as /services, or a full https:// address.'
+  return c.result({ image, imageAlt: image ? imageAlt : '', subtitle, title, description, ctaLabel, ctaLink })
 }
 
 export function validateNotificationPrefs(input: unknown): Result<NotificationPrefs> {

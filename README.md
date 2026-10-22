@@ -73,7 +73,7 @@ Every admin can edit their own profile, password, sessions and notification pref
 
 ## How the website uses the API
 
-Blogs, projects, services, certificates (About page, above the footer) and the contact form talk to `/api/public`. Pages render the bundled content instantly and swap in live data when it arrives. If the API is unreachable (e.g. a static-only deploy), the bundled content stays and the contact form falls back to opening the visitor's email client.
+Blogs, projects, services, certificates (About page, above the footer), the home page header (admin → Website Header) and the contact form talk to `/api/public`. Pages render the bundled content instantly and swap in live data when it arrives. If the API is unreachable (e.g. a static-only deploy), the bundled content stays and the contact form falls back to opening the visitor's email client.
 
 ## Deployment
 

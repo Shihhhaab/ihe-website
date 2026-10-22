@@ -59,7 +59,7 @@ export default function BlogDetailPage() {
 
   return (
     <div className="page">
-      <header className="article-hero on-dark">
+      <header className="article-hero">
         <div className="container article-hero__inner">
           <motion.div
             initial={{ opacity: 0, x: -16 }}

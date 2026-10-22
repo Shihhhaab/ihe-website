@@ -9,10 +9,12 @@
   --charcoal: #141416;
   --charcoal-700: #1f1f22;
   --charcoal-600: #2e2e33;
-  --brand: #801818;
-  --brand-700: #661313;
-  --brand-50: #f9ecec;
-  --brand-bright: #e04848;
+  /* I.H.E. burgundy and mustard gold, matching the public website */
+  --brand: #6b1721;
+  --brand-700: #561119;
+  --brand-50: #f6eced;
+  /* Accent on the charcoal sidebar and dark tiles */
+  --brand-bright: #c7a333;
   /* Gold status tone (badges), kept distinct from the red error tone */
   --gold-600: #a2813a;
   --gold-50: #f8f0df;
@@ -118,7 +120,7 @@ h3 {
 }
 
 :focus-visible {
-  outline: 2px solid var(--brand-bright);
+  outline: 2px solid var(--brand);
   outline-offset: 2px;
 }
 
@@ -183,6 +185,11 @@ h3 {
 }
 
 /* ─── Sidebar ────────────────────────────────────────────── */
+/* Gold focus ring on the charcoal sidebar; burgundy everywhere else */
+.sidebar :focus-visible {
+  outline-color: var(--brand-bright);
+}
+
 .sidebar {
   position: sticky;
   top: 0;
@@ -1393,7 +1400,7 @@ h3 {
 .thumb--empty {
   display: grid;
   place-items: center;
-  color: var(--brand-bright);
+  color: var(--brand);
 }
 
 .thumb--empty svg {

@@ -14,7 +14,7 @@
 .mask-image {
   position: relative;
   overflow: hidden;
-  background: var(--black-800);
+  background: var(--stone);
 }
 
 .mask-image__inner {
@@ -38,4 +38,36 @@
   height: 1px;
   background: currentColor;
   transform-origin: left center;
+}
+
+/*
+ * MaskLines `backdrop`: a fill copy and a text copy of each line share one grid
+ * cell, so they wrap identically. The fill paints a background that hugs every
+ * wrapped line (box-decoration-break) and sweeps in via background-size.
+ */
+.mask-lines__row {
+  display: grid;
+}
+
+.mask-lines__row>* {
+  grid-area: 1 / 1;
+}
+
+.mask-lines__fill,
+.mask-lines__line {
+  padding: 0.06em 0.28em 0.1em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+.mask-lines__fill {
+  color: transparent;
+  background: linear-gradient(var(--mask-fill, #000), var(--mask-fill, #000)) left center / 100% 100% no-repeat;
+}
+
+/* Per-character typing reveal for backdrop headings */
+.mask-lines__char {
+  display: inline-block;
+  will-change: opacity;
+  white-space: pre;
 }

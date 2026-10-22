@@ -72,6 +72,7 @@ export default function ServicesPage() {
                   as="h2"
                   lines={[service.title]}
                   className="h2 service-block__title"
+                  backdrop
                 />
                 <Reveal delay={0.1}>
                   <p className="lead muted">{service.description}</p>
@@ -93,7 +94,7 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      <section className="section section--dark grid-texture operations" aria-labelledby="operations-title">
+      <section className="section section--light grid-texture operations" aria-labelledby="operations-title">
         <div className="container operations__grid">
           <div>
             <Reveal className="section-header__meta">

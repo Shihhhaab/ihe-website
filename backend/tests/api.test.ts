@@ -215,6 +215,7 @@ describe('admin API', () => {
     assert.deepEqual(res.body.services, { total: 6, hidden: 0 })
     assert.deepEqual(res.body.certificates, { total: 3, expiringSoon: 0 })
     assert.equal(res.body.equipment, undefined)
+    assert.equal(res.body.projects.pending, undefined, 'the Pending Projects widget was removed')
     assert.ok(res.body.enquiries.total >= 1)
   })
 
@@ -364,6 +365,7 @@ describe('admin API', () => {
     assert.equal((await content('GET', '/api/admin/blogs')).status, 200)
     assert.equal((await content('GET', '/api/admin/services')).status, 200)
     assert.equal((await content('GET', '/api/admin/certificates')).status, 200)
+    assert.equal((await content('GET', '/api/admin/header')).status, 200, 'content managers manage the website header')
     assert.equal((await content('GET', '/api/admin/enquiries')).status, 403)
     assert.equal((await content('GET', '/api/admin/users')).status, 403)
     assert.equal((await content('PUT', '/api/admin/settings/company', {})).status, 403)
@@ -431,5 +433,46 @@ describe('admin API', () => {
 
     const foreign = await owner('POST', '/api/admin/services', { ...service, image: 'https://evil.example/x.png' })
     assert.equal(foreign.status, 400, 'only Cloudinary or bundled images are accepted')
+  })
+
+  test('website header: protected, validated, published, old image cleaned up after saving', async () => {
+    const visitor = api()
+    assert.equal((await visitor('PUT', '/api/admin/header', {})).status, 401)
+    assert.equal((await visitor('POST', '/api/admin/uploads', { dataUrl: PNG, folder: 'hero' })).status, 401)
+    assert.equal((await owner('GET', '/api/admin/header')).body, null, 'nothing saved yet')
+    assert.equal((await visitor('GET', '/api/public/hero')).body, null, 'the website keeps its default header')
+
+    const longWord = await owner('PUT', '/api/admin/header', { title: ['Superinfrastructural'] })
+    assert.match(longWord.body.fields.title, /longer than 15/)
+    const bad = await owner('PUT', '/api/admin/header', { title: ['x'.repeat(21)], ctaLink: 'javascript:alert(1)' })
+    assert.equal(bad.status, 400)
+    for (const field of ['title', 'subtitle', 'description', 'ctaLabel', 'ctaLink']) assert.ok(bad.body.fields[field], field)
+
+    const first = (await owner('POST', '/api/admin/uploads', { dataUrl: PNG, folder: 'hero' })).body.url
+    assert.match(first, /\/ihe\/hero\//)
+    const header = {
+      image: first,
+      imageAlt: 'Paving crew at work',
+      subtitle: 'Roads · Infrastructure',
+      title: ['Building', 'Qatar’s roads'],
+      description: 'Test description.',
+      ctaLabel: 'Contact us',
+      ctaLink: '/contact',
+    }
+    const saved = await owner('PUT', '/api/admin/header', { ...header, title: ['  Building ', '', 'Qatar’s roads'] })
+    assert.equal(saved.status, 200)
+    assert.deepEqual(saved.body, header, 'heading lines are trimmed and blank lines dropped')
+    assert.deepEqual((await owner('GET', '/api/admin/header')).body, header, 'reloading the admin page shows the saved header')
+    assert.deepEqual((await visitor('GET', '/api/public/hero')).body, header, 'the website receives the saved header')
+
+    const rejected = await owner('PUT', '/api/admin/header', { ...header, image: 'https://evil.example/x.png' })
+    assert.equal(rejected.status, 400)
+    assert.deepEqual((await visitor('GET', '/api/public/hero')).body, header, 'a failed save leaves the published header untouched')
+    assert.ok(!media.removed.includes(first))
+
+    const cleared = await owner('PUT', '/api/admin/header', { ...header, image: null, imageAlt: '' })
+    assert.equal(cleared.status, 200)
+    assert.equal(cleared.body.image, null, 'the website falls back to its default photograph')
+    assert.ok(media.removed.includes(first), 'the removed upload is deleted once the change is saved')
   })
 })

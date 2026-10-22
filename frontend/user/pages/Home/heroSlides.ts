@@ -1,4 +1,5 @@
-import { FOUNDED_YEAR } from '../../data/company'
+import { defaultHero } from '../../../../shared/content/hero'
+import type { HeroContent } from '../../../../shared/types'
 
 export interface HeroSlide {
   id: string
@@ -17,18 +18,19 @@ export interface HeroSlide {
 
 /**
  * Home hero carousel. Slide one is the site's original header — image, copy
- * and CTAs unchanged. Slides two and three reuse existing service photography
- * (see shared/content/services.ts) to spotlight another I.H.E. service line.
+ * and CTAs unchanged (see shared/content/hero.ts); admins can replace it from
+ * the "Website Header" page. Slides two and three reuse existing service
+ * photography (see shared/content/services.ts) to spotlight another I.H.E. service line.
  */
 export const heroSlides: HeroSlide[] = [
   {
     id: 'roads-infrastructure',
-    image: 'ihe-road-intersection',
-    imageAlt: 'Aerial view of a signalised road intersection and parking area built by I.H.E.',
+    image: defaultHero.image!,
+    imageAlt: defaultHero.imageAlt,
     focus: '50% 62%',
-    eyebrow: 'Roads · Infrastructure · Earthworks · General contracting',
-    title: ['Delivering', 'infrastructure', 'excellence in Qatar'],
-    text: `A leading Qatari contracting company established in ${FOUNDED_YEAR}, delivering roads, infrastructure, earthworks and drainage networks that support Qatar’s sustainable growth.`,
+    eyebrow: defaultHero.subtitle,
+    title: defaultHero.title,
+    text: defaultHero.description,
     dotLabel: 'Roads & Infrastructure',
   },
   {
@@ -52,3 +54,24 @@ export const heroSlides: HeroSlide[] = [
     dotLabel: 'Asphalt & Pavement',
   },
 ]
+
+/** Slide one with the header saved in the admin panel. A removed image falls back to the default photograph. */
+export function withSavedHeader(slides: HeroSlide[], hero: HeroContent | null): HeroSlide[] {
+  if (!hero) return slides
+  const [first, ...rest] = slides
+  const ownImage = hero.image !== null && hero.image !== first.image
+  return [
+    {
+      ...first,
+      image: hero.image ?? first.image,
+      imageAlt: hero.image ? hero.imageAlt : first.imageAlt,
+      // The default photo's crop is tuned by hand; other photos are centred.
+      focus: ownImage ? '50% 50%' : first.focus,
+      eyebrow: hero.subtitle,
+      title: hero.title,
+      text: hero.description,
+      dotLabel: hero.title.join(' '),
+    },
+    ...rest,
+  ]
+}

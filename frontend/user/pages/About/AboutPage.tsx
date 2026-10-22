@@ -93,7 +93,7 @@ export default function AboutPage() {
       </section>
 
       {/* Mission & vision */}
-      <section className="section section--dark grid-texture purpose" aria-label="Mission and vision">
+      <section className="section section--light grid-texture purpose" aria-label="Mission and vision">
         <div className="container purpose__grid">
           <Reveal as="article" className="purpose__item">
             <span className="purpose__label mono">02 — Mission</span>
@@ -121,7 +121,7 @@ export default function AboutPage() {
       </section>
 
       {/* Core values */}
-      <section className="section section--light values" aria-labelledby="values-title">
+      <section className="section section--white values" aria-labelledby="values-title">
         <div className="container">
           <SectionHeader
             id="values-title"
@@ -148,7 +148,7 @@ export default function AboutPage() {
       </section>
 
       {/* Milestones */}
-      <section className="section section--white milestones" aria-labelledby="milestones-title">
+      <section className="section section--light milestones" aria-labelledby="milestones-title">
         <div className="container">
           <SectionHeader
             id="milestones-title"
@@ -174,7 +174,7 @@ export default function AboutPage() {
       </section>
 
       {/* Organization chart */}
-      <section className="section section--darker grid-texture org" aria-labelledby="org-title">
+      <section className="section section--white grid-texture org" aria-labelledby="org-title">
         <div className="container">
           <SectionHeader
             id="org-title"

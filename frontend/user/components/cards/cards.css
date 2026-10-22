@@ -17,15 +17,15 @@
 }
 
 .status--ongoing {
-  color: var(--brand-bright);
+  color: var(--gold-deep);
 }
 
 .status--ongoing::before {
-  box-shadow: 0 0 0 3px rgba(224, 72, 72, 0.22);
+  box-shadow: 0 0 0 3px rgba(199, 163, 51, 0.25);
 }
 
 .status--completed {
-  color: var(--mist);
+  color: var(--slate);
 }
 
 /* ─── Project card ───────────────────────────────────────── */
@@ -35,9 +35,9 @@
   flex-direction: column;
   width: 100%;
   text-align: left;
-  color: var(--white);
-  background: var(--black-800);
-  border: 1px solid var(--line-dark);
+  color: var(--ink);
+  background: var(--surface-card);
+  border: 1px solid var(--line-light);
   transition:
     transform 0.7s var(--ease-out),
     border-color var(--dur) var(--ease-out),
@@ -48,7 +48,7 @@
   position: relative;
   aspect-ratio: 4 / 3;
   overflow: hidden;
-  background: var(--black-900);
+  background: var(--stone);
 }
 
 .project-card__media img {
@@ -65,7 +65,7 @@
 .project-card__shade {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(11, 11, 12, 0.75), transparent 55%);
+  background: linear-gradient(to top, rgba(var(--overlay-rgb), 0.55), transparent 55%);
   transition: opacity var(--dur);
 }
 
@@ -77,7 +77,7 @@
   letter-spacing: 0.14em;
   color: var(--white);
   padding: 0.3rem 0.55rem;
-  background: rgba(11, 11, 12, 0.55);
+  background: rgba(var(--overlay-rgb), 0.55);
   backdrop-filter: blur(6px);
 }
 
@@ -112,7 +112,7 @@
   gap: 1rem;
   font-size: var(--fs-label);
   letter-spacing: 0.1em;
-  color: var(--mist);
+  color: var(--slate);
 }
 
 .project-card__title {
@@ -125,7 +125,7 @@
 
 .project-card__client {
   font-size: var(--fs-small);
-  color: var(--text-on-dark-muted);
+  color: var(--slate);
 }
 
 .project-card__foot {
@@ -135,10 +135,10 @@
   gap: 1rem;
   margin-top: 0.6rem;
   padding-top: 1rem;
-  border-top: 1px solid var(--line-dark);
+  border-top: 1px solid var(--line-soft);
   font-size: var(--fs-label);
   letter-spacing: 0.08em;
-  color: var(--text-on-dark-muted);
+  color: var(--slate);
 }
 
 .project-card__foot span {
@@ -148,13 +148,35 @@
 }
 
 .project-card__value {
-  color: var(--brand-bright);
+  color: var(--brand);
   font-weight: 500;
 }
 
 /* Feature variant: text overlays the image */
+/* The feature card's text sits on its photograph, so it keeps light text */
 .project-card--feature {
   min-height: 100%;
+  color: var(--white);
+  background: var(--black-900);
+}
+
+.project-card--feature .project-card__meta,
+.project-card--feature .status--completed {
+  color: var(--mist);
+}
+
+.project-card--feature .project-card__client,
+.project-card--feature .project-card__foot {
+  color: var(--text-on-dark-muted);
+}
+
+.project-card--feature .project-card__foot {
+  border-top-color: var(--line-dark);
+}
+
+.project-card--feature .project-card__value,
+.project-card--feature .status--ongoing {
+  color: var(--brand-bright);
 }
 
 .project-card--feature .project-card__media {
@@ -165,8 +187,7 @@
 
 .project-card--feature .project-card__shade {
   background:
-    linear-gradient(to top, rgba(11, 11, 12, 0.95) 5%, rgba(11, 11, 12, 0.2) 60%, rgba(11, 11, 12, 0.35)),
-    linear-gradient(to right, rgba(128, 24, 24, 0.25), transparent 60%);
+    linear-gradient(to top, rgba(var(--overlay-rgb), 0.9) 5%, rgba(var(--overlay-rgb), 0.2) 60%, rgba(var(--overlay-rgb), 0.3));
 }
 
 .project-card--feature .project-card__body {
@@ -190,8 +211,8 @@
 @media (hover: hover) {
   .project-card:hover {
     transform: translateY(-6px);
-    border-color: rgba(224, 72, 72, 0.45);
-    box-shadow: 0 30px 60px -30px rgba(0, 0, 0, 0.65);
+    border-color: var(--gold);
+    box-shadow: 0 30px 60px -30px rgba(var(--overlay-rgb), 0.35);
   }
 
   .project-card:hover .project-card__media img {
@@ -205,6 +226,10 @@
   }
 
   .project-card:hover .project-card__title {
+    color: var(--brand);
+  }
+
+  .project-card--feature:hover .project-card__title {
     color: var(--brand-300);
   }
 }
@@ -247,8 +272,8 @@
   left: 0;
   bottom: 0;
   padding: 0.5rem 0.85rem;
-  background: var(--black-900);
-  color: var(--brand-bright);
+  background: var(--surface-card);
+  color: var(--brand);
   font-size: 0.66rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -331,12 +356,12 @@
   gap: 0.9rem;
   padding: 1.5rem;
   text-align: center;
-  color: var(--brand-bright);
+  color: var(--brand);
   background:
-    linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px) 0 0 / 32px 32px,
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px) 0 0 / 32px 32px,
-    radial-gradient(circle at 50% 40%, rgba(224, 72, 72, 0.14), transparent 60%),
-    var(--black-900);
+    linear-gradient(to right, rgba(51, 48, 46, 0.06) 1px, transparent 1px) 0 0 / 32px 32px,
+    linear-gradient(to bottom, rgba(51, 48, 46, 0.06) 1px, transparent 1px) 0 0 / 32px 32px,
+    radial-gradient(circle at 50% 40%, rgba(199, 163, 51, 0.16), transparent 60%),
+    var(--stone);
   transition: transform 1.2s var(--ease-out);
 }
 
@@ -344,7 +369,7 @@
   font-size: var(--fs-label);
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--text-on-dark-muted);
+  color: var(--slate);
 }
 
 @media (hover: hover) {

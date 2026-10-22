@@ -11,11 +11,11 @@ export const ROLE_LABELS: Record<Role, string> = {
 }
 
 /** Admin areas, used both to guard API routes and to show/hide navigation. */
-export type Area = 'dashboard' | 'enquiries' | 'blogs' | 'projects' | 'services' | 'certificates' | 'users' | 'company'
+export type Area = 'dashboard' | 'enquiries' | 'blogs' | 'header' | 'projects' | 'services' | 'certificates' | 'users' | 'company'
 
 const ACCESS: Record<Role, Area[]> = {
-  super_admin: ['dashboard', 'enquiries', 'blogs', 'projects', 'services', 'certificates', 'users', 'company'],
-  content_manager: ['dashboard', 'blogs', 'projects', 'services', 'certificates'],
+  super_admin: ['dashboard', 'enquiries', 'blogs', 'header', 'projects', 'services', 'certificates', 'users', 'company'],
+  content_manager: ['dashboard', 'blogs', 'header', 'projects', 'services', 'certificates'],
   enquiry_manager: ['dashboard', 'enquiries'],
 }
 

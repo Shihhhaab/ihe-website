@@ -190,6 +190,22 @@ export interface CompanySettings {
   logoUrl: string | null
 }
 
+/** The home page header (first slide of the hero carousel), managed in the admin panel. */
+export interface HeroContent {
+  /** Bundled image key or Cloudinary URL. `null` = the website's default header photograph. */
+  image: string | null
+  imageAlt: string
+  /** Short line above the heading. */
+  subtitle: string
+  /** Heading lines; the last line is shown in the accent colour. */
+  title: string[]
+  description: string
+  /** Primary call-to-action button (shared by every hero slide). */
+  ctaLabel: string
+  /** A page on this site (e.g. "/services") or a full https:// address. */
+  ctaLink: string
+}
+
 export interface NotificationPrefs {
   newEnquiry: boolean
   weeklySummary: boolean
@@ -216,7 +232,7 @@ export interface ActivityItem {
 
 export interface DashboardSummary {
   enquiries: { total: number; thisMonth: number; recent: Enquiry[] }
-  projects: { current: ProjectRecord[]; completed: ProjectRecord[]; pending: ProjectRecord[]; dueThisQuarter: number }
+  projects: { current: ProjectRecord[]; completed: ProjectRecord[]; dueThisQuarter: number }
   services: { total: number; hidden: number }
   certificates: { total: number; expiringSoon: number }
   blogs: { total: number; drafts: number }

@@ -4,9 +4,9 @@
   display: flex;
   align-items: center;
   background:
-    linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px) 0 0 / calc(100% / 6) 100%,
-    var(--black-900);
-  color: var(--white);
+    linear-gradient(to right, rgba(51, 48, 46, 0.05) 1px, transparent 1px) 0 0 / calc(100% / 6) 100%,
+    var(--surface-alt);
+  color: var(--ink);
 }
 
 .not-found__inner {
@@ -20,7 +20,7 @@
   font-size: var(--fs-label);
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--brand-bright);
+  color: var(--gold-deep);
 }
 
 .not-found__title {

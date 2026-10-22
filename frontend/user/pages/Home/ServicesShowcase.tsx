@@ -18,7 +18,7 @@ export function ServicesShowcase() {
   if (!current) return null
 
   return (
-    <section className="section section--dark grid-texture showcase" aria-labelledby="showcase-title">
+    <section className="section section--light grid-texture showcase" aria-labelledby="showcase-title">
       <div className="container">
         <SectionHeader
           id="showcase-title"

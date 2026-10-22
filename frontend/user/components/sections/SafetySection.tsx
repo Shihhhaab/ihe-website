@@ -8,7 +8,7 @@ import './sections.css'
 /** QHSE policy: the certified management systems and the quality, health & safety and environment commitments. */
 export function SafetySection({ index = '06' }: { index?: string }) {
   return (
-    <section className="section section--darker grid-texture safety" aria-labelledby="safety-title">
+    <section className="section section--light grid-texture safety" aria-labelledby="safety-title">
       <div className="container">
         <SectionHeader
           id="safety-title"

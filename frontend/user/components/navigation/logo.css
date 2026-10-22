@@ -6,7 +6,7 @@
 }
 
 .logo--dark {
-  color: var(--black-900);
+  color: var(--ink);
 }
 
 .logo__mark {
@@ -44,6 +44,10 @@
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--brand-bright);
+}
+
+.logo--dark .logo__tag {
+  color: var(--gold-deep);
 }
 
 @media (max-width: 420px) {

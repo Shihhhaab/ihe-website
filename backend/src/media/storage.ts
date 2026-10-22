@@ -8,7 +8,7 @@ import type { CloudinaryConfig } from '../config.ts'
  */
 
 /** Sub-folders inside the configured Cloudinary folder, one per kind of image. */
-export const MEDIA_FOLDERS = ['blogs', 'projects', 'services', 'certificates', 'branding', 'avatars'] as const
+export const MEDIA_FOLDERS = ['blogs', 'hero', 'projects', 'services', 'certificates', 'branding', 'avatars'] as const
 export type MediaFolder = (typeof MEDIA_FOLDERS)[number]
 
 /** PDFs are only accepted for certificate scans. */

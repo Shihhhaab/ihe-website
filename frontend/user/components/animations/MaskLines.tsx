@@ -12,8 +12,11 @@ interface MaskLinesProps {
   immediate?: boolean
   /** Index of a line to render in the accent colour. */
   accentLine?: number
+  /** Reveal text one letter at a time from left to right. */
+  backdrop?: boolean
   id?: string
 }
+
 
 /** Headline whose lines slide up from behind a mask, one after another. */
 export function MaskLines({
@@ -24,11 +27,44 @@ export function MaskLines({
   stagger = 0.1,
   immediate = false,
   accentLine,
+  backdrop = false,
   id,
 }: MaskLinesProps) {
   const Tag = motion[as]
   const reduce = useReducedMotion()
   const trigger = immediate ? { animate: 'visible' } : { whileInView: 'visible', viewport }
+  if (backdrop) {
+    // Letter-by-letter reveal: each character fades in from left to right.
+    const CHAR_STAGGER = 0.035
+    return (
+      <Tag id={id} className={className} initial={reduce ? false : 'hidden'} {...trigger} aria-label={lines.join(' ')}>
+        {lines.map((line, i) => {
+          const chars = Array.from(line)
+          const lineDelay = delay + i * stagger
+          return (
+            <span key={i} style={{ display: 'block' }} aria-hidden="true">
+              {chars.map((char, ci) => (
+                <motion.span
+                  key={ci}
+                  className="mask-lines__char"
+                  variants={{
+                    hidden: { opacity: 0 },
+                    visible: {
+                      opacity: 1,
+                      transition: { duration: 0.08, ease: 'linear', delay: lineDelay + ci * CHAR_STAGGER },
+                    },
+                  }}
+                >
+                  {char}
+                </motion.span>
+              ))}
+            </span>
+          )
+        })}
+      </Tag>
+    )
+  }
+
   return (
     <Tag id={id} className={className} initial={reduce ? false : 'hidden'} {...trigger} aria-label={lines.join(' ')}>
       {lines.map((line, i) => (

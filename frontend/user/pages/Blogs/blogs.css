@@ -33,8 +33,9 @@
 
 .blog-feature__cat {
   padding: 0.35rem 0.7rem;
-  background: var(--black-900);
-  color: var(--brand-bright);
+  background: var(--surface-alt);
+  color: var(--brand);
+  box-shadow: inset 0 0 0 1px var(--line-light);
 }
 
 .blog-feature__title {
@@ -83,8 +84,8 @@
 /* ─── Article detail ─────────────────────────────────────── */
 .article-hero {
   position: relative;
-  background: var(--black-900);
-  color: var(--white);
+  background: var(--surface-alt);
+  color: var(--ink);
   padding-top: calc(var(--header-h) + clamp(3rem, 7vw, 5.5rem));
   padding-bottom: clamp(8rem, 16vw, 13rem);
   overflow: hidden;
@@ -94,7 +95,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-image: linear-gradient(to right, rgba(51, 48, 46, 0.05) 1px, transparent 1px);
   background-size: calc(100% / 6) 100%;
   pointer-events: none;
 }
@@ -115,7 +116,7 @@
   font-size: var(--fs-label);
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--text-on-dark-muted);
+  color: var(--slate);
   transition: color var(--dur-fast);
 }
 
@@ -124,7 +125,7 @@
 }
 
 .article-hero__back:hover {
-  color: var(--brand-bright);
+  color: var(--brand);
 }
 
 .article-hero__back:hover svg {
@@ -139,12 +140,11 @@
   font-size: var(--fs-label);
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--mist);
+  color: var(--slate);
 }
 
 .article-hero__meta .blog-feature__cat {
-  background: var(--brand);
-  color: var(--white);
+  background: var(--surface-card);
 }
 
 .article-hero__title {
@@ -155,7 +155,7 @@
 
 .article-hero__excerpt {
   max-width: 720px;
-  color: var(--text-on-dark-muted);
+  color: var(--slate);
 }
 
 .article-cover {
@@ -207,7 +207,7 @@
   width: 44px;
   height: 44px;
   border: 1px solid var(--line-light-strong);
-  color: var(--black-900);
+  color: var(--ink);
   transition:
     background-color var(--dur-fast),
     color var(--dur-fast),
@@ -217,9 +217,9 @@
 
 .article__share a:hover,
 .article__share button:hover {
-  background: var(--black-900);
-  border-color: var(--black-900);
-  color: var(--brand-bright);
+  background: var(--surface-alt);
+  border-color: var(--brand);
+  color: var(--brand);
   transform: translateY(-2px);
 }
 
@@ -228,7 +228,7 @@
   gap: 1.4rem;
   font-size: 1.08rem;
   line-height: 1.8;
-  color: #2a2a2e;
+  color: var(--ink);
 }
 
 .article__body > p:first-child::first-letter {
@@ -244,19 +244,19 @@
 .article__h2 {
   margin-top: 1.25rem;
   font-size: var(--fs-h3);
-  color: var(--black-900);
+  color: var(--heading);
 }
 
 .article__quote {
   margin: 1rem 0;
   padding: 1.5rem 0 1.5rem 2rem;
-  border-left: 2px solid var(--brand-bright);
+  border-left: 2px solid var(--gold);
   font-family: var(--font-display);
   font-size: clamp(1.4rem, 1.1rem + 1vw, 2rem);
   font-weight: 600;
   line-height: 1.25;
   letter-spacing: -0.02em;
-  color: var(--black-900);
+  color: var(--ink);
 }
 
 .article__list {

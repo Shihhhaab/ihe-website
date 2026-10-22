@@ -7,6 +7,7 @@ import {
   validateBlog,
   validateCertificate,
   validateEnquiryStatus,
+  validateHero,
   validateProject,
   validateService,
 } from '../../../../shared/validation.ts'
@@ -107,6 +108,31 @@ export function blogRoutes(db: Db, media: MediaStore | null, log: (err: unknown)
     discardReplaced(media, existing.image, null, log)
     await activity.log('blog', 'Blog post deleted', `"${existing.title}"`)
     res.status(204).end()
+  })
+
+  return router
+}
+
+/* ─── Website header ──────────────────────────────────────── */
+
+export function headerRoutes(db: Db, media: MediaStore | null, log: (err: unknown) => void) {
+  const router = Router()
+  const settings = repo.settings(db)
+  const activity = repo.activity(db)
+  router.use(requireArea('header'))
+
+  router.get('/', async (_req, res) => {
+    res.json(await settings.hero())
+  })
+
+  router.put('/', async (req, res) => {
+    const input = valid(validateHero(req.body))
+    const previous = await settings.hero()
+    await settings.setHero(input)
+    // Only once the new header is saved is a replaced upload deleted.
+    discardReplaced(media, previous?.image, input.image, log)
+    await activity.log('settings', 'Website header updated', `"${input.title.join(' ')}" is now the home page header.`)
+    res.json(await settings.hero())
   })
 
   return router

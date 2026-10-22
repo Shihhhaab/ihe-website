@@ -77,7 +77,7 @@
   line-height: 1;
   letter-spacing: -0.05em;
   color: transparent;
-  -webkit-text-stroke: 1.5px var(--brand-bright);
+  -webkit-text-stroke: 1.5px var(--brand);
   pointer-events: none;
 }
 
@@ -99,8 +99,13 @@
   color: var(--brand);
 }
 
+/*
+ * Service side headings: burgundy text with a letter-by-letter reveal
+ * (MaskLines `backdrop`).
+ */
 .service-block__title {
   font-size: clamp(2rem, 1.4rem + 2.2vw, 3.3rem);
+  color: #691722;
 }
 
 .service-block__bullets {
@@ -126,7 +131,7 @@
 }
 
 .service-block .text-link {
-  color: var(--black-900);
+  color: var(--ink);
 }
 
 @media (max-width: 900px) {
@@ -156,7 +161,7 @@
 .operations__text {
   display: grid;
   gap: 1.2rem;
-  color: var(--white);
+  color: var(--ink);
 }
 
 @media (max-width: 900px) {

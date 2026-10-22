@@ -13,7 +13,7 @@ html {
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
   scroll-padding-top: calc(var(--header-h) + 1rem);
-  background: var(--black-950);
+  background: var(--surface-page);
 }
 
 body {
@@ -22,7 +22,7 @@ body {
   font-size: var(--fs-body);
   line-height: 1.65;
   color: var(--ink);
-  background: var(--black-950);
+  background: var(--surface-page);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
@@ -80,18 +80,33 @@ h5 {
   text-wrap: balance;
 }
 
+/* Main headings are black on light surfaces (highlighted words in burgundy); over photographs they stay white. */
+h1,
+h2 {
+  color: var(--heading);
+}
+
+.on-dark h1,
+.on-dark h2 {
+  color: inherit;
+}
+
 p {
   text-wrap: pretty;
 }
 
 ::selection {
-  background: var(--brand-bright);
-  color: var(--black-900);
+  background: var(--gold-pale);
+  color: var(--ink);
 }
 
 :focus-visible {
-  outline: 2px solid var(--brand-bright);
+  outline: 2px solid var(--brand);
   outline-offset: 3px;
+}
+
+.on-dark :focus-visible {
+  outline-color: var(--gold);
 }
 
 /* Accessibility */
@@ -113,8 +128,8 @@ p {
   left: 1rem;
   z-index: 200;
   padding: 0.75rem 1.25rem;
-  background: var(--brand-bright);
-  color: var(--black-900);
+  background: var(--brand);
+  color: var(--white);
   font-weight: 600;
   transform: translateY(-160%);
   transition: transform var(--dur-fast) var(--ease-out);
@@ -138,23 +153,13 @@ p {
 }
 
 .section--light {
-  background: var(--paper);
+  background: var(--surface-alt);
   color: var(--ink);
 }
 
 .section--white {
-  background: var(--white);
+  background: var(--surface-page);
   color: var(--ink);
-}
-
-.section--dark {
-  background: var(--black-900);
-  color: var(--text-on-dark);
-}
-
-.section--darker {
-  background: var(--black-950);
-  color: var(--text-on-dark);
 }
 
 /* Fine engineering grid used behind select sections */
@@ -164,15 +169,10 @@ p {
   inset: 0;
   pointer-events: none;
   background-image:
-    linear-gradient(to right, var(--grid-line, rgba(255, 255, 255, 0.045)) 1px, transparent 1px),
-    linear-gradient(to bottom, var(--grid-line, rgba(255, 255, 255, 0.045)) 1px, transparent 1px);
+    linear-gradient(to right, var(--grid-line, rgba(51, 48, 46, 0.05)) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line, rgba(51, 48, 46, 0.05)) 1px, transparent 1px);
   background-size: 96px 96px;
   mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, #000 30%, transparent 100%);
-}
-
-.section--light.grid-texture,
-.section--white.grid-texture {
-  --grid-line: rgba(20, 20, 22, 0.05);
 }
 
 /* Typography helpers */
@@ -188,8 +188,6 @@ p {
   color: var(--brand-700);
 }
 
-.section--dark .eyebrow,
-.section--darker .eyebrow,
 .on-dark .eyebrow {
   color: var(--brand-bright);
 }
@@ -219,14 +217,24 @@ p {
   color: var(--slate);
 }
 
-.section--dark .muted,
-.section--darker .muted,
 .on-dark .muted {
   color: var(--text-on-dark-muted);
 }
 
+/* Highlighted heading line: burgundy on light surfaces, red over photographs (where burgundy would not read) */
 .accent {
-  color: var(--brand-bright);
+  color: var(--brand);
+}
+
+.on-dark .accent {
+  color: var(--red-accent);
+}
+
+/* Page header (hero) headings: the highlighted line uses the hero accent (the Contact heading keeps the burgundy highlight) */
+.home-hero__title .accent,
+.page-hero__title .accent,
+.not-found__title .accent {
+  color: var(--red-accent);
 }
 
 .h-display {
@@ -248,9 +256,9 @@ p {
   letter-spacing: -0.01em;
 }
 
-/* Page-level wrapper so page transitions never flash white */
+/* Page-level wrapper: a light surface behind every page */
 .page {
-  background: var(--paper);
+  background: var(--surface-alt);
   min-height: 100vh;
 }
 
@@ -264,10 +272,4 @@ p {
     scroll-behavior: auto !important;
   }
 }
-.page--loading { min-height: 100vh; background: var(--black-900); }
-
-/* The bright red reads well on black; on light surfaces the accent switches to the deeper logo red. */
-.section--light .accent,
-.section--white .accent {
-  color: var(--brand);
-}
+.page--loading { min-height: 100vh; background: var(--surface-alt); }

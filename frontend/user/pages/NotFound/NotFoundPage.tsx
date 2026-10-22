@@ -8,7 +8,7 @@ export default function NotFoundPage() {
   usePageMeta('Page not found')
   return (
     <div className="page">
-      <section className="not-found on-dark">
+      <section className="not-found">
         <div className="container not-found__inner">
           <span className="not-found__code mono" aria-hidden="true">
             Error 404
@@ -19,7 +19,7 @@ export default function NotFoundPage() {
           </Reveal>
           <Reveal delay={0.95} className="not-found__actions">
             <Button to="/">Back to home</Button>
-            <Button to="/contact" variant="outline">
+            <Button to="/contact" variant="ghost-dark">
               Contact us
             </Button>
           </Reveal>

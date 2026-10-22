@@ -25,8 +25,8 @@
   aspect-ratio: 4 / 3;
   padding: clamp(1rem, 2vw, 1.5rem);
   background:
-    linear-gradient(to right, rgba(20, 20, 22, 0.04) 1px, transparent 1px) 0 0 / 24px 24px,
-    linear-gradient(to bottom, rgba(20, 20, 22, 0.04) 1px, transparent 1px) 0 0 / 24px 24px,
+    linear-gradient(to right, rgba(51, 48, 46, 0.04) 1px, transparent 1px) 0 0 / 24px 24px,
+    linear-gradient(to bottom, rgba(51, 48, 46, 0.04) 1px, transparent 1px) 0 0 / 24px 24px,
     var(--stone);
   overflow: hidden;
 }
@@ -57,7 +57,7 @@
   width: 100%;
   height: 100%;
   object-fit: contain;
-  filter: drop-shadow(0 10px 18px rgba(20, 20, 22, 0.18));
+  filter: drop-shadow(0 10px 18px rgba(var(--overlay-rgb), 0.18));
   transition: transform 1.1s var(--ease-out);
 }
 
@@ -72,8 +72,9 @@
   padding: 0.25rem 0.5rem;
   font-size: 0.64rem;
   letter-spacing: 0.14em;
-  background: var(--black-900);
-  color: var(--white);
+  background: var(--surface-card);
+  color: var(--ink);
+  box-shadow: inset 0 0 0 1px var(--line-light);
 }
 
 .certificate__index {
@@ -83,6 +84,8 @@
 .certificate__type {
   right: 2.25rem;
   background: var(--brand);
+  color: var(--white);
+  box-shadow: none;
 }
 
 .certificate__body {
@@ -107,7 +110,7 @@
   font-weight: 600;
   line-height: 1.22;
   letter-spacing: -0.01em;
-  color: var(--black-900);
+  color: var(--ink);
 }
 
 .certificate__desc {
@@ -134,7 +137,7 @@
   font-weight: 600;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--black-900);
+  color: var(--ink);
 }
 
 .certificate__more svg {
@@ -145,7 +148,7 @@
 @media (hover: hover) {
   .certificate:hover {
     transform: translateY(-6px);
-    border-color: rgba(168, 40, 40, 0.45);
+    border-color: var(--gold);
     box-shadow: var(--shadow-lift);
   }
 

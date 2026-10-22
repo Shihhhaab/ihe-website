@@ -19,7 +19,7 @@ export function Footer() {
   }
 
   return (
-    <footer className="footer on-dark">
+    <footer className="footer">
       <div className="container">
         <div className="footer__lead">
           <MaskLines as="p" lines={['Shaping Qatar’s', 'infrastructural', 'horizons.']} accentLine={2} className="footer__statement" />
@@ -31,7 +31,7 @@ export function Footer() {
 
         <div className="footer__grid">
           <div className="footer__brand">
-            <Logo />
+            <Logo tone="dark" />
             <p className="muted">{company.description}</p>
             <a
               className="footer__social"

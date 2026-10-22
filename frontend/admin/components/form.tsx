@@ -83,7 +83,7 @@ interface ImageInputProps {
   hint?: string
   /** Cloudinary sub-folder; also decides which admins may upload (see the backend's upload route). */
   /** "certificates" also accepts PDF files. */
-  folder: 'blogs' | 'projects' | 'services' | 'certificates' | 'branding' | 'avatars'
+  folder: 'blogs' | 'hero' | 'projects' | 'services' | 'certificates' | 'branding' | 'avatars'
   /** Offer the website's bundled photography as quick choices. */
   library?: boolean
   error?: string

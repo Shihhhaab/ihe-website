@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import type { PublicBlogPost, PublicCertificate, PublicProject, PublicService } from '../../../shared/types'
+import type { HeroContent, PublicBlogPost, PublicCertificate, PublicProject, PublicService } from '../../../shared/types'
 import { api } from '../../shared/api'
 import { blogPosts } from '../data/blogs'
 import { projects } from '../data/projects'
@@ -56,6 +56,9 @@ export const useBlogPosts = () => useLiveContent<PublicBlogPost[]>('/blogs', blo
 export const useProjects = () => useLiveContent<PublicProject[]>('/projects', projects)
 
 export const useServices = () => useLiveContent<PublicService[]>('/services', services)
+
+/** The home page header saved in the admin panel; `null` keeps the bundled default header. */
+export const useHero = () => useLiveContent<HeroContent | null>('/hero', null)
 
 /** Certificates exist only in the admin panel, so there is no bundled fallback. */
 export const useCertificates = () => useLiveContent<PublicCertificate[]>('/certificates', [])

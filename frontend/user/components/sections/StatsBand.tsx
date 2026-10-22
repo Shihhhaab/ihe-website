@@ -4,7 +4,7 @@ import { RevealGroup, RevealItem } from '../animations/Reveal'
 import './sections.css'
 
 /** Four key company figures with count-up numbers, divided by hairlines. */
-export function StatsBand({ tone = 'dark' }: { tone?: 'dark' | 'light' }) {
+export function StatsBand({ tone = 'light' }: { tone?: 'light' }) {
   return (
     <RevealGroup as="ul" className={`stats-band stats-band--${tone}`} stagger={0.12}>
       {stats.map((stat, i) => (

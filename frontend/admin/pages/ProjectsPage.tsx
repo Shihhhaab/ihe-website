@@ -5,7 +5,6 @@ import {
   Building2,
   CalendarDays,
   CheckCircle2,
-  Clock3,
   ExternalLink,
   HardHat,
   MapPin,
@@ -33,14 +32,14 @@ import { toNumberOrNull } from '../lib/format'
 import { useForm } from '../hooks/useForm'
 import './pages.css'
 
-const PAGE_COPY: Record<ProjectStatus, { title: string; description: string; dateLabel: string }> = {
+/** Statuses with an admin page. Pending records stay in the database but no longer have a page. */
+type AdminStatus = Exclude<ProjectStatus, 'pending'>
+const ADMIN_STATUSES = PROJECT_STATUSES.filter((s): s is AdminStatus => s !== 'pending')
+
+const PAGE_COPY: Record<AdminStatus, { title: string; description: string; dateLabel: string }> = {
   current: { title: 'Current Projects', description: 'Ongoing projects and their progress across Qatar', dateLabel: 'Target' },
   completed: { title: 'Completed Projects', description: 'Delivered projects and their completion dates', dateLabel: 'Completed' },
-  pending: { title: 'Pending Projects', description: 'Upcoming projects awaiting mobilisation', dateLabel: 'Expected Start' },
 }
-
-/** The date shown on a card: target/completion date, or the expected start for pending work. */
-const cardDate = (p: ProjectRecord) => (p.status === 'pending' ? (p.startDate ?? p.endDate) : p.endDate)
 
 type Draft = {
   title: string
@@ -58,7 +57,7 @@ type Draft = {
   featured: boolean
 }
 
-function ProjectEditor({ project, status, onClose, onSaved }: { project: ProjectRecord | null; status: ProjectStatus; onClose: () => void; onSaved: (p: ProjectRecord) => void }) {
+function ProjectEditor({ project, status, onClose, onSaved }: { project: ProjectRecord | null; status: AdminStatus; onClose: () => void; onSaved: (p: ProjectRecord) => void }) {
   const { values, set, errors, submitting, submit } = useForm<Draft>({
     title: project?.title ?? '',
     client: project?.client ?? '',
@@ -127,7 +126,7 @@ function ProjectEditor({ project, status, onClose, onSaved }: { project: Project
         <Field label="Status" error={errors.status}>
           {(a) => (
             <select {...a} className="select" value={values.status} onChange={(e) => set('status', e.target.value as ProjectStatus)}>
-              {PROJECT_STATUSES.map((s) => (
+              {ADMIN_STATUSES.map((s) => (
                 <option key={s} value={s}>
                   {PROJECT_STATUS_LABELS[s]}
                 </option>
@@ -162,7 +161,7 @@ function ProjectEditor({ project, status, onClose, onSaved }: { project: Project
 
 function ProjectCard({ project, actions }: { project: ProjectRecord; actions: MenuAction[] }) {
   const image = previewUrl(project.image)
-  const date = cardDate(project)
+  const date = project.endDate
   return (
     <article className="card project-card">
       <div className="project-card__media">
@@ -192,7 +191,7 @@ function ProjectCard({ project, actions }: { project: ProjectRecord; actions: Me
           </p>
           {date && (
             <p className="project-card__date">
-              <CalendarDays aria-hidden="true" /> {PAGE_COPY[project.status].dateLabel}: {date}
+              <CalendarDays aria-hidden="true" /> {PAGE_COPY[project.status as AdminStatus].dateLabel}: {date}
             </p>
           )}
         </div>
@@ -203,11 +202,11 @@ function ProjectCard({ project, actions }: { project: ProjectRecord; actions: Me
 
 export default function ProjectsPage() {
   const { status: param } = useParams()
-  if (!PROJECT_STATUSES.includes(param as ProjectStatus)) return <NotFoundPage />
-  return <ProjectsList key={param} status={param as ProjectStatus} />
+  if (!ADMIN_STATUSES.includes(param as AdminStatus)) return <NotFoundPage />
+  return <ProjectsList key={param} status={param as AdminStatus} />
 }
 
-function ProjectsList({ status }: { status: ProjectStatus }) {
+function ProjectsList({ status }: { status: AdminStatus }) {
   const { data, error, loading, reload } = useApi<ProjectRecord[]>(`/admin/projects?status=${status}`)
   const [query, setQuery] = useState('')
   const [location, setLocation] = useState('')
@@ -226,7 +225,7 @@ function ProjectsList({ status }: { status: ProjectStatus }) {
     return (!location || p.location === location) && (!q || [p.title, p.client].some((f) => f.toLowerCase().includes(q)))
   })
 
-  const moveTo = async (p: ProjectRecord, next: ProjectStatus) => {
+  const moveTo = async (p: ProjectRecord, next: AdminStatus) => {
     try {
       await api(`/admin/projects/${p.id}`, { method: 'PUT', body: { ...p, status: next, progress: next === 'current' ? (p.progress ?? 0) : null } })
       notify(`Moved to ${PAGE_COPY[next].title}`)
@@ -250,7 +249,7 @@ function ProjectsList({ status }: { status: ProjectStatus }) {
       : { label: 'Locations', value: locations.length, icon: MapPin, tone: 'red' },
   ]
 
-  const StatusIcon = status === 'current' ? HardHat : status === 'completed' ? CheckCircle2 : Clock3
+  const StatusIcon = status === 'current' ? HardHat : CheckCircle2
 
   return (
     <>
@@ -307,10 +306,10 @@ function ProjectsList({ status }: { status: ProjectStatus }) {
               project={p}
               actions={[
                 { label: 'Edit', icon: Pencil, onSelect: () => setEditing(p) },
-                { label: 'View on website', icon: ExternalLink, onSelect: () => window.open(`/projects#${p.slug}`, '_blank', 'noopener'), hidden: p.status === 'pending' },
-                ...PROJECT_STATUSES.filter((s) => s !== p.status).map((s) => ({
+                { label: 'View on website', icon: ExternalLink, onSelect: () => window.open(`/projects#${p.slug}`, '_blank', 'noopener') },
+                ...ADMIN_STATUSES.filter((s) => s !== p.status).map((s) => ({
                   label: `Move to ${PROJECT_STATUS_LABELS[s]}`,
-                  icon: s === 'completed' ? CheckCircle2 : s === 'current' ? HardHat : Clock3,
+                  icon: s === 'completed' ? CheckCircle2 : HardHat,
                   onSelect: () => moveTo(p, s),
                 })),
                 { label: 'Delete', icon: Trash2, onSelect: () => setDeleting(p), danger: true },
@@ -327,7 +326,7 @@ function ProjectsList({ status }: { status: ProjectStatus }) {
           onClose={() => setEditing(null)}
           onSaved={(saved) => {
             setEditing(null)
-            if (saved.status !== status) notify(`Saved to ${PAGE_COPY[saved.status].title}`)
+            if (saved.status !== status) notify(`Saved to ${PAGE_COPY[saved.status as AdminStatus].title}`)
             reload()
           }}
         />

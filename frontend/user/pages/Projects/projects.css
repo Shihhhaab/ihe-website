@@ -19,8 +19,8 @@
   top: 1rem;
   left: 1rem;
   padding: 0.45rem 0.8rem;
-  background: var(--black-900);
-  color: var(--brand-bright);
+  background: var(--surface-card);
+  color: var(--brand);
   font-size: 0.66rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -112,7 +112,7 @@
 
 /* ─── Register ───────────────────────────────────────────── */
 .register__table {
-  border-top: 1px solid var(--black-900);
+  border-top: 1px solid var(--brand);
 }
 
 .register__row {
@@ -142,7 +142,7 @@
   font-family: var(--font-display);
   font-weight: 600;
   font-size: 1.02rem;
-  color: var(--black-900);
+  color: var(--ink);
 }
 
 .register__row .mono {
@@ -154,7 +154,7 @@
 }
 
 .register__status.status--ongoing::before {
-  box-shadow: 0 0 0 3px rgba(128, 24, 24, 0.15);
+  box-shadow: 0 0 0 3px rgba(107, 23, 33, 0.15);
 }
 
 .register__status.status--completed {
@@ -208,7 +208,7 @@
 .project-dialog__backdrop {
   position: absolute;
   inset: 0;
-  background: rgba(11, 11, 12, 0.7);
+  background: rgba(var(--overlay-rgb), 0.6);
   backdrop-filter: blur(4px);
 }
 
@@ -221,7 +221,7 @@
   overflow-y: auto;
   background: var(--white);
   color: var(--ink);
-  box-shadow: -30px 0 60px -30px rgba(0, 0, 0, 0.5);
+  box-shadow: -30px 0 60px -30px rgba(var(--overlay-rgb), 0.45);
 }
 
 .project-dialog__close {
@@ -233,8 +233,8 @@
   place-items: center;
   width: 48px;
   height: 48px;
-  background: var(--black-900);
-  color: var(--white);
+  background: var(--surface-card);
+  color: var(--ink);
   transition:
     background-color var(--dur-fast),
     transform var(--dur) var(--ease-out);
@@ -242,6 +242,7 @@
 
 .project-dialog__close:hover {
   background: var(--brand);
+  color: var(--white);
   transform: rotate(90deg);
 }
 
@@ -249,7 +250,7 @@
   aspect-ratio: 16 / 10;
   position: relative;
   overflow: hidden;
-  background: var(--black-800);
+  background: var(--stone);
 }
 
 .project-dialog__media img {

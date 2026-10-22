@@ -20,17 +20,18 @@
 }
 
 .filter__btn:hover {
-  color: var(--black-900);
+  color: var(--ink);
 }
 
 .filter__btn.is-active {
   color: var(--white);
 }
 
+/* Selected tab: burgundy fill with white text */
 .filter__pill {
   position: absolute;
   inset: 0;
-  background: var(--black-900);
+  background: var(--brand);
 }
 
 .filter__label {
@@ -47,5 +48,5 @@
 }
 
 .filter__btn.is-active .filter__label .mono {
-  color: var(--brand-bright);
+  color: rgba(255, 255, 255, 0.75);
 }

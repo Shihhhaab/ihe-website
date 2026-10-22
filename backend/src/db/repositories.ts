@@ -14,6 +14,7 @@ import type {
   CompanySettings,
   Enquiry,
   EnquiryStatus,
+  HeroContent,
   NotificationPrefs,
   ProjectRecord,
   ProjectStatus,
@@ -348,9 +349,13 @@ export const certificates = (db: Db) => {
 
 export const settings = (db: Db) => {
   const col = db.collection<{ _id: string; value: CompanySettings }>('settings')
+  const hero = db.collection<{ _id: string; value: HeroContent; updatedAt: string }>('settings')
   return {
     company: async (): Promise<CompanySettings | null> => (await col.findOne({ _id: 'company' }))?.value ?? null,
     setCompany: (value: CompanySettings) => col.updateOne({ _id: 'company' }, { $set: { value } }, { upsert: true }),
+    /** `null` until an admin saves the website header for the first time. */
+    hero: async (): Promise<HeroContent | null> => (await hero.findOne({ _id: 'hero' }))?.value ?? null,
+    setHero: (value: HeroContent) => hero.updateOne({ _id: 'hero' }, { $set: { value, updatedAt: now() } }, { upsert: true }),
   }
 }
 

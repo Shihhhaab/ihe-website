@@ -1,12 +1,14 @@
 import { AnimatePresence, motion, useReducedMotion, useScroll, useTransform } from 'motion/react'
-import { useEffect, useRef, useState, type TouchEvent } from 'react'
+import { useEffect, useMemo, useRef, useState, type TouchEvent } from 'react'
 import { Button } from '../../components/buttons/Button'
 import { MaskLines } from '../../components/animations/MaskLines'
 import { Img } from '../../components/ui/Img'
 import { imageSource } from '../../data/images'
 import { FOUNDED_YEAR } from '../../data/company'
+import { defaultHero } from '../../../../shared/content/hero'
+import { useHero } from '../../hooks/usePublicContent'
 import { EASE_IN_OUT, EASE_OUT } from '../../lib/motion'
-import { heroSlides } from './heroSlides'
+import { heroSlides as bundledSlides, withSavedHeader } from './heroSlides'
 
 const heroMeta = [
   { label: 'Established', value: String(FOUNDED_YEAR) },
@@ -32,6 +34,11 @@ export function HomeHero() {
   const imageY = useTransform(scrollYProgress, [0, 1], ['0%', '22%'])
   const contentY = useTransform(scrollYProgress, [0, 1], ['0%', '-12%'])
   const contentOpacity = useTransform(scrollYProgress, [0, 0.7], [1, 0])
+
+  const { data: hero } = useHero()
+  const heroSlides = useMemo(() => withSavedHeader(bundledSlides, hero), [hero])
+  // The primary button is shared by every slide.
+  const cta = hero ?? defaultHero
 
   const [index, setIndex] = useState(0)
   const [direction, setDirection] = useState(1)
@@ -183,7 +190,7 @@ export function HomeHero() {
               as="h1"
               id="home-hero-title"
               lines={slide.title}
-              accentLine={2}
+              accentLine={slide.title.length - 1}
               className="home-hero__title"
               immediate
               delay={d.title}
@@ -205,7 +212,7 @@ export function HomeHero() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1, delay: d.actions, ease: EASE_OUT }}
               >
-                <Button to="/services">Explore our services</Button>
+                {cta.ctaLink.startsWith('/') ? <Button to={cta.ctaLink}>{cta.ctaLabel}</Button> : <Button href={cta.ctaLink}>{cta.ctaLabel}</Button>}
                 <Button to="/contact" variant="outline">
                   Partner with us
                 </Button>

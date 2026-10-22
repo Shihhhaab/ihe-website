@@ -29,7 +29,7 @@ export default function ContactPage() {
   return (
     <div className="page">
       {/* Split hero */}
-      <section className="contact-hero on-dark" aria-labelledby="contact-title">
+      <section className="contact-hero" aria-labelledby="contact-title">
         <div className="container contact-hero__grid">
           <div className="contact-hero__copy">
             <nav aria-label="Breadcrumb" className="page-hero__crumbs mono contact-hero__crumbs">
@@ -167,7 +167,7 @@ export default function ContactPage() {
       </section>
 
       {/* Location */}
-      <section className="location on-dark" aria-labelledby="location-title">
+      <section className="location" aria-labelledby="location-title">
         <div className="location__map">
           <div className="location__fallback" aria-hidden="true">
             <span className="location__pin" />

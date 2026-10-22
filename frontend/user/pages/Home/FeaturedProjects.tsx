@@ -11,7 +11,7 @@ export function FeaturedProjects() {
   const rest = projects.filter((p) => p !== feature)
   if (!feature) return null
   return (
-    <section className="section section--light featured" aria-labelledby="featured-title">
+    <section className="section section--white featured" aria-labelledby="featured-title">
       <div className="container">
         <SectionHeader
           id="featured-title"

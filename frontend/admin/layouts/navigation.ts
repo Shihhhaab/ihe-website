@@ -2,11 +2,11 @@ import {
   Award,
   CheckCircle2,
   ClipboardList,
-  Clock3,
   HardHat,
   LayoutGrid,
   MessageSquareText,
   Newspaper,
+  PanelTop,
   Settings,
   Users,
   type LucideIcon,
@@ -32,6 +32,7 @@ export const navSections: { label: string; items: NavItem[] }[] = [
   {
     label: 'Content',
     items: [
+      { label: 'Website Header', to: '/header', icon: PanelTop, area: 'header' },
       { label: 'Blogs', to: '/blogs', icon: Newspaper, area: 'blogs' },
       { label: 'Certificates', to: '/certificates', icon: Award, area: 'certificates' },
     ],
@@ -41,7 +42,6 @@ export const navSections: { label: string; items: NavItem[] }[] = [
     items: [
       { label: 'Current Projects', to: '/projects/current', icon: HardHat, area: 'projects' },
       { label: 'Completed Projects', to: '/projects/completed', icon: CheckCircle2, area: 'projects' },
-      { label: 'Pending Projects', to: '/projects/pending', icon: Clock3, area: 'projects' },
       { label: 'Services', to: '/services', icon: ClipboardList, area: 'services' },
     ],
   },

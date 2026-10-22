@@ -1,36 +1,60 @@
 /* I.H.E. design tokens */
 :root {
-  /* Palette — taken from the I.H.E. logo: brick red, road black and white. */
-  --black-950: #0b0b0c;
-  --black-900: #141416;
-  --black-800: #1c1c1f;
-  --black-700: #28282c;
-  --black-600: #3a3a3f;
-  --charcoal: #18181a;
-  /* Logo red: fills, buttons and accents on light surfaces */
-  --brand: #801818;
-  --brand-600: #9c1f1f;
-  /* Brighter tint of the logo red: accents and labels on dark surfaces */
-  --brand-bright: #e04848;
-  --brand-300: #f08a86;
-  --brand-700: #a82828;
-  --white: #ffffff;
-  --paper: #f4f4f5;
-  --stone: #e6e6e8;
-  --ink: #141416;
-  --slate: #515158;
-  --mist: #9d9da5;
+  /*
+   * Palette — from the I.H.E. presentation documents: white and warm-neutral
+   * surfaces, black headings with burgundy highlights, burgundy buttons, small
+   * mustard-gold decorative details, charcoal text and fine warm-gray rules.
+   * Burgundy is never a large background.
+   */
+  /* Brand burgundy: heading highlights, primary buttons, emphasis, thin rules and small icons */
+  --brand: #691722;
+  /* Hover shade of the burgundy buttons */
+  --brand-600: #4f1019;
+  /* Mustard gold: small decorative details only — thin rules, ticks, dots and short indicators (2.4:1 on white) */
+  --gold: #c7a333;
+  /* Gold for text and labels on light surfaces (5:1 on white) */
+  --gold-deep: #8a6a17;
+  --gold-pale: #e3cd86;
+  /* Accents on photographs (gold reads at 7:1 over the overlay) */
+  --brand-bright: var(--gold);
+  --brand-300: var(--gold-pale);
+  /* Small labels on light surfaces */
+  --brand-700: var(--gold-deep);
+  /* Red accent: page-header highlights, highlights over photographs and the Services side headings */
+  --red-accent: #de484a;
+  --black: #000000;
 
-  /* Semantic surfaces */
-  --surface-dark: var(--black-900);
-  --surface-darker: var(--black-950);
+  /* Neutrals */
+  --white: #ffffff;
+  --paper: #f7f6f4;
+  --stone: #eeebe6;
+  --ink: #33302e;
+  --charcoal: var(--ink);
+  --slate: #6b6b6b;
+  /* Neutral charcoal, used only behind and over photographs (the "black-*" names are kept for existing references) */
+  --black-950: #1c1a19;
+  --black-900: #262321;
+  --black-800: #33302e;
+  --black-700: #45413e;
+  --black-600: #5a5552;
+  /* Muted text over photographs */
+  --mist: #bdb6af;
+
+  /* Semantic roles */
+  --heading: var(--black);
+  --surface-page: var(--white);
+  --surface-alt: var(--paper);
+  --surface-card: var(--white);
   --surface-light: var(--paper);
-  --line-dark: rgba(255, 255, 255, 0.12);
-  --line-dark-strong: rgba(255, 255, 255, 0.22);
-  --line-light: rgba(20, 20, 22, 0.12);
-  --line-light-strong: rgba(20, 20, 22, 0.24);
-  --text-on-dark: rgba(255, 255, 255, 0.92);
-  --text-on-dark-muted: rgba(232, 232, 236, 0.68);
+  /* rgb triplet for photo overlays and shadows: rgba(var(--overlay-rgb), alpha) */
+  --overlay-rgb: 28, 26, 25;
+  --line-light: #d9d4cc;
+  --line-light-strong: #bfb7ac;
+  --line-soft: #e6e6e6;
+  --line-dark: rgba(255, 255, 255, 0.14);
+  --line-dark-strong: rgba(255, 255, 255, 0.24);
+  --text-on-dark: rgba(255, 255, 255, 0.94);
+  --text-on-dark-muted: rgba(245, 242, 238, 0.8);
 
   /* Typography */
   --font-display: 'Archivo', 'Arial Narrow', system-ui, sans-serif;
@@ -61,8 +85,8 @@
   --dur: 0.5s;
   --dur-slow: 0.9s;
 
-  --shadow-lift: 0 24px 48px -24px rgba(11, 11, 12, 0.35);
-  --shadow-soft: 0 12px 32px -16px rgba(11, 11, 12, 0.25);
+  --shadow-lift: 0 24px 48px -24px rgba(var(--overlay-rgb), 0.28);
+  --shadow-soft: 0 12px 32px -16px rgba(var(--overlay-rgb), 0.18);
 }
 
 @media (max-width: 768px) {

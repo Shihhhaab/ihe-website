@@ -2,7 +2,6 @@ import {
   Award,
   ClipboardList,
   CheckCircle2,
-  Clock3,
   FilePlus2,
   HardHat,
   MessageSquareText,
@@ -183,17 +182,16 @@ export default function DashboardPage() {
             <div className="card__head">
               <div>
                 <h2 id="project-overview">Project Overview</h2>
-                <p>A snapshot across current, completed and pending work</p>
+                <p>A snapshot across current and completed work</p>
               </div>
             </div>
             <div className="card__body overview">
               {loading || !data ? (
-                <TableSkeleton rows={3} cols={3} />
+                <TableSkeleton rows={3} cols={2} />
               ) : (
                 <>
                   <ProjectColumn title="Current Projects" icon={HardHat} tone="gold" projects={data.projects.current} to="/projects/current" />
                   <ProjectColumn title="Completed Projects" icon={CheckCircle2} tone="green" projects={data.projects.completed} to="/projects/completed" />
-                  <ProjectColumn title="Pending Projects" icon={Clock3} tone="navy" projects={data.projects.pending} to="/projects/pending" />
                 </>
               )}
             </div>

@@ -8,7 +8,7 @@ import { apiNotFound, errorHandler } from './http/errors.ts'
 import { sameOriginWrites, securityHeaders } from './http/security.ts'
 import { cloudinaryStore, type MediaStore } from './media/storage.ts'
 import { authRoutes } from './routes/auth.ts'
-import { blogRoutes, certificateRoutes, enquiryRoutes, projectRoutes, serviceRoutes } from './routes/admin/content.ts'
+import { blogRoutes, certificateRoutes, enquiryRoutes, headerRoutes, projectRoutes, serviceRoutes } from './routes/admin/content.ts'
 import { overviewRoutes, settingsRoutes, uploadRoutes, userRoutes } from './routes/admin/system.ts'
 import { publicRoutes } from './routes/public.ts'
 
@@ -56,6 +56,7 @@ export function createApp(
   admin.use('/', overviewRoutes(db))
   admin.use('/enquiries', enquiryRoutes(db))
   admin.use('/blogs', blogRoutes(db, media, log))
+  admin.use('/header', headerRoutes(db, media, log))
   admin.use('/projects', projectRoutes(db, media, log))
   admin.use('/services', serviceRoutes(db, media, log))
   admin.use('/certificates', certificateRoutes(db, media, log))

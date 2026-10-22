@@ -65,6 +65,11 @@ export function publicRoutes(db: Db) {
     res.json((await repo.services(db).visible()).map(toPublicService))
   })
 
+  /** The admin-managed home page header, or `null` while the website default is in use. */
+  router.get('/hero', async (_req, res) => {
+    res.json(await repo.settings(db).hero())
+  })
+
   router.get('/certificates', async (_req, res) => {
     res.json((await repo.certificates(db).visible()).map(toPublicCertificate))
   })

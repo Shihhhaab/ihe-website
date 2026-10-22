@@ -9,9 +9,11 @@ import './header.css'
 
 const SOLID_AFTER = 24
 const HIDE_AFTER = 480
+/** Pages that open with a full-bleed photograph, where the transparent header shows light text. */
+const PHOTO_HERO_ROUTES = new Set(['/', '/about', '/services', '/projects', '/blogs'])
 
 /**
- * Fixed header: transparent over the hero, solid navy with blur once scrolled.
+ * Fixed header: transparent over a photo hero, solid white with blur once scrolled.
  * Slides away while scrolling down and returns on scroll up.
  */
 export function Header() {
@@ -22,6 +24,8 @@ export function Header() {
   // The menu remembers the route it was opened on, so any navigation closes it.
   const [menuPath, setMenuPath] = useState<string | null>(null)
   const menuOpen = menuPath === pathname
+  // Charcoal text whenever the header isn't over a photograph.
+  const light = solid || menuOpen || !PHOTO_HERO_ROUTES.has(pathname)
 
   useMotionValueEvent(scrollY, 'change', (y) => {
     const previous = scrollY.getPrevious() ?? 0
@@ -34,7 +38,7 @@ export function Header() {
   return (
     <>
       <motion.header
-        className={`site-header ${solid ? 'is-solid' : ''} ${menuOpen ? 'is-menu-open' : ''}`}
+        className={`site-header ${solid ? 'is-solid' : ''} ${light ? 'is-light' : ''} ${menuOpen ? 'is-menu-open' : ''}`}
         animate={{ y: hidden && !menuOpen ? '-100%' : '0%' }}
         transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
       >

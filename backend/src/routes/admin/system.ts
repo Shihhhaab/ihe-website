@@ -45,7 +45,6 @@ export function overviewRoutes(db: Db) {
       projects: {
         current: projects.filter((p) => p.status === 'current'),
         completed: projects.filter((p) => p.status === 'completed'),
-        pending: projects.filter((p) => p.status === 'pending'),
         dueThisQuarter: projects.filter((p) => p.status === 'current' && p.endDate && p.endDate.length === 10 && p.endDate >= today && p.endDate <= quarterEnd()).length,
       },
       services: { total: services.length, hidden: services.filter((s) => !s.visible).length },
@@ -76,8 +75,9 @@ export function overviewRoutes(db: Db) {
       }
     }
     if (canAccess(role, 'projects')) {
+      // Pending projects have no admin page, so they are left out of search.
       for (const p of await repo.projects(db).list()) {
-        if (has(p.title, p.client, p.location)) results.push({ kind: 'project', id: p.id, title: p.title, subtitle: `${p.client} · ${p.location}`, href: `/projects/${p.status}?edit=${p.id}` })
+        if (p.status !== 'pending' && has(p.title, p.client, p.location)) results.push({ kind: 'project', id: p.id, title: p.title, subtitle: `${p.client} · ${p.location}`, href: `/projects/${p.status}?edit=${p.id}` })
       }
     }
     if (canAccess(role, 'services')) {
@@ -247,6 +247,7 @@ function sniffFile(buf: Buffer): MediaFormat | null {
 /** Which admin area may upload into each folder. `null` = any signed-in admin (their own avatar). */
 const FOLDER_AREA: Record<MediaFolder, Area | null> = {
   blogs: 'blogs',
+  hero: 'header',
   projects: 'projects',
   services: 'services',
   certificates: 'certificates',
